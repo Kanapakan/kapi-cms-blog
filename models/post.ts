@@ -9,8 +9,9 @@ export class Post {
                 public excerpt: string,
                 public createdAt: Date,
                 public slug: string,
+                public categories: Category[],
                 public featuredImage?: Image,
-                public categories?: Category,
+                
         ) {
     }
 }
@@ -18,6 +19,16 @@ export class Post {
 export class Node {
     constructor(
             public node: Post
+        ) {
+    }
+}
+
+export class RecentPost {
+    constructor(
+            public title: string,
+            public createdAt: Date,
+            public slug: string,
+            public featuredImage?: Image,
         ) {
     }
 }
