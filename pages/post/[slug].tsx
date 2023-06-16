@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import { getPosts, getPostDetails } from '../../services'
-import { Author, Categories, Comments, CommentsForm, PostDetail, PostWidget } from '../../components'; 
+import { AuthorPost, Categories, Comments, CommentsForm, PostDetail, PostWidget } from '../../components'; 
 import { ParsedUrlQuery } from 'querystring';
 import { Post } from '@/models/post';
 import { GetStaticPaths, GetStaticProps } from 'next';
@@ -9,20 +9,13 @@ import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { useRouter } from 'next/router';
 // import PostWidget from '@/components/PostWidget';
 
-export interface QParams extends ParsedUrlQuery {
-  slug?: string
-  // lang?: Locale
-}
-
 type PostDetail = {
   post: Post;
 }
 
 const PostDetails = ({ post }: PostDetail) => {
   const router = useRouter();
-  // const router = useRouter()
-  // console.log([router.query.slug]);
-  console.log(post);
+  console.log("post", post);
   
   
   return (
@@ -30,13 +23,13 @@ const PostDetails = ({ post }: PostDetail) => {
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
         <div className='col-span-1 lg:col-span-8'>
           <PostDetail post={post} />
-          <Author author={post.author} />
+          <AuthorPost author={post.author} />
           <Comments slug={post.slug} />
           <CommentsForm slug={post.slug} />
         </div>
         <div className='col-span-1 lg:col-span-4'>
           <div className='relative lg:sticky top-8'>
-            <PostWidget categories={post.categories.map((category) => category.slug)} slug={post.slug} />
+          <PostWidget slug={post.slug} categories={post.categories.map((category) => category.slug)} />
             <Categories />
           </div>
         </div>
