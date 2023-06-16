@@ -11,6 +11,7 @@ export class Post {
                 public slug: string,
                 public categories: Category[],
                 public featuredImage?: Image,
+                public content?: string,
                 
         ) {
     }

@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link';
+import { getCategories } from '../services';
+import { Category } from '../models/category';
 
-type Category = {
-    name: string,
-    slug: string
-}
+// type Category = {
+//     name: string,
+//     slug: string
+// }
 
 const Header = () => {
+    const [categories, setCategories] = useState<Category[]>([]);
 
-    const categories: Category[] = [
-        { name: 'React', slug: 'react' },
-        { name: 'Web Dev', slug: 'web-dev'}
-    ]
+    useEffect(() => {
+        getCategories()
+            .then((newCategories) => setCategories(newCategories))
+    }, []);
 
   return (
     <div className='container mx-auto px-10 mb-8'>

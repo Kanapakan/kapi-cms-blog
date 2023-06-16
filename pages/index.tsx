@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import { PostCard, Categories, PostWidget } from '../components';
-import { getPost } from '../services';
+import { getPosts } from '../services';
 import { Node } from '../models/post';
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,7 +24,7 @@ function Home( { posts }: PostProps ) {
         </div>
         <div className='lg:col-span-4 col-span-1'>
           {/* {posts.map((post) => <PostWidget categories={post.node.categories} key={post.node.title} slug={post.node.categories} />)} */}
-          <PostWidget />
+          <PostWidget categories={[]} slug={''} />
           <Categories />
         </div>
         
@@ -38,7 +38,7 @@ function Home( { posts }: PostProps ) {
 export default Home;
 
 export async function getStaticProps() {
-  const posts = (await getPost()) || [];
+  const posts = (await getPosts()) || [];
 
   return {
     props: { posts }
