@@ -126,6 +126,19 @@ export const getCategories = async () => {
     return results.categories;
 };
 
+export const submitComment = async (obj: CommentObj) => {
+  const result = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(obj),
+  });
+
+  return result.json();
+}
+
+
 interface GetResponsePosts {
     postsConnection: {
         edges: {
@@ -145,4 +158,11 @@ interface GetResponseRecentPosts {
 
 interface GetResponseCategories {
     categories: Category[];
+}
+
+type CommentObj = {
+  name: string,
+  email: string,
+  slug: string,
+  comment: string,
 }

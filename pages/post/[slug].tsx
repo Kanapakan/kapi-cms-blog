@@ -15,7 +15,7 @@ type PostDetail = {
 
 const PostDetails = ({ post }: PostDetail) => {
   const router = useRouter();
-  console.log("post", post);
+  // console.log("post", post);
   
   
   return (
@@ -24,8 +24,8 @@ const PostDetails = ({ post }: PostDetail) => {
         <div className='col-span-1 lg:col-span-8'>
           <PostDetail post={post} />
           <AuthorPost author={post.author} />
-          <Comments slug={post.slug} />
           <CommentsForm slug={post.slug} />
+          <Comments slug={post.slug} />
         </div>
         <div className='col-span-1 lg:col-span-4'>
           <div className='relative lg:sticky top-8'>

@@ -13,14 +13,14 @@ type relatedPostProps = {
 
 const PostWIdget = ({ categories, slug }: relatedPostProps) => {
   const [relatedPosts, setRelatedPosts] = useState<RecentPost[]>([]);
-  console.log("categories", categories);
+  // console.log("categories", categories);
 
   useEffect(() => {
     if (slug) {
       getSimilarPosts(categories, slug).then((result) => {
         setRelatedPosts(result);
       });
-      console.log("have slug", relatedPosts);
+      // console.log("have slug", relatedPosts);
     } else {
       getRecentPosts().then((result) => {
         setRelatedPosts(result);
